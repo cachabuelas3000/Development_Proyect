@@ -39,9 +39,18 @@ public abstract class AbstractCrud <T extends BaseClass>{
 
             switch (caseNumber) {
                 case "1":
-                    // Caso 1: Crear
-                    this.create();
-                    break;
+                    //caso crear
+                    T recordCreate = this.createInstance();
+
+                    if(this.newRecord(recordCreate)) {
+					JOptionPane.showMessageDialog(null, "Se agregó el registro",//recordar que es para un pedido o un delivery 
+							"Creación del registro", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "No se agregó el registro", 
+							"Creación del registro", JOptionPane.ERROR_MESSAGE);
+				}
+				break;
+
                 case "2":
                     // Caso 2: Buscar
                     // this.read();
@@ -61,5 +70,12 @@ public abstract class AbstractCrud <T extends BaseClass>{
             
         }
     }
+
+    //metodos de la clase
+	protected abstract boolean newRecord(T record);
+	protected abstract T findRecordById(int id);
+	protected abstract boolean updateRecord(T t);
+	protected abstract T createInstance();
+	protected abstract boolean deleteRecord(int id);
 
 }
