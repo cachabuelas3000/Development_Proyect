@@ -1,4 +1,4 @@
-package co.edu.uptc.Orders.model;
+package co.edu.uptc.orders.model;
 
 public class Delivery extends BaseClass {
     private static int autoId = 0;

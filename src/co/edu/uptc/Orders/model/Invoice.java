@@ -1,3 +1,5 @@
+package co.edu.uptc.orders.model;
+
 public class Invoice extends BaseClass {
     private static int autoId = 0;
 

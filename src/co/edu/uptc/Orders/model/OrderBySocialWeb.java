@@ -26,5 +26,13 @@ public class OrderBySocialWeb extends Order {
         this.socialWebName = socialWebName;
     }
 
+    public static int getNumOrder() {
+        return numOrder;
+    }
+
+    public static void setNumOrder(int numOrder) {
+        OrderBySocialWeb.numOrder = numOrder;
+    }
+
 
 }
