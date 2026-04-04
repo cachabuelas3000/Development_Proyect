@@ -1,8 +1,8 @@
-package co.edu.uptc.orders.data;
+package co.edu.uptc.Orders.data;
 
 import javax.swing.*;
 import java.awt.*;
-import co.edu.uptc.orders.model.BaseClass;
+import co.edu.uptc.Orders.model.BaseClass;
 
 public abstract class AbstractCrud <T extends BaseClass>{
 
