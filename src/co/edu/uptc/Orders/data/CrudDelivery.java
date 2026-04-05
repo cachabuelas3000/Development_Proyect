@@ -1,9 +1,10 @@
-package co.edu.uptc.Orders.data;
+package co.edu.uptc.orders.data;
 import javax.swing.JOptionPane;
+
+import co.edu.uptc.orders.model.Delivery;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import co.edu.uptc.Orders.model.Delivery;
 
 public class CrudDelivery extends AbstractCrud<Delivery> {
 
@@ -16,11 +17,11 @@ public class CrudDelivery extends AbstractCrud<Delivery> {
 
     @Override
     protected Delivery createInstance() {
-        String courier = JOptionPane.showInputDialog("Enter courier name:");
-        String vehicle = JOptionPane.showInputDialog("Enter vehicle:");
-        String area = JOptionPane.showInputDialog("Enter delivery area:");
-        double fee = Double.parseDouble(JOptionPane.showInputDialog("Enter fee:"));
-        String status = JOptionPane.showInputDialog("Enter status:");
+        String courier = JOptionPane.showInputDialog("Ingrese el nombre del Delivery:");
+        String vehicle = JOptionPane.showInputDialog("Ingrese al vehículo:");
+        String area = JOptionPane.showInputDialog("Introduzca la zona de reparto:");
+        double fee = Double.parseDouble(JOptionPane.showInputDialog("Introduzca la tarifa:"));
+        String status = JOptionPane.showInputDialog("Introduzca el estado:");
 
         return new Delivery(courier, vehicle, area, fee, status);
     }

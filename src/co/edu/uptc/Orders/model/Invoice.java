@@ -3,7 +3,7 @@ package co.edu.uptc.orders.model;
 public class Invoice extends BaseClass {
     private static int autoId = 0;
 
-    private Order order; // Composition: depends on Order
+    private Order order; // Composición: depende del pedido.
     private double amount;
     private String date;
     private String paymentMethod;
@@ -40,7 +40,7 @@ public class Invoice extends BaseClass {
 
     @Override
     public String toString() {
-        return "Invoice [ID=" + id + ", OrderID=" + (order != null ? order.getId() : "null") +
-                ", Amount=" + amount + ", Date=" + date + ", PaymentMethod=" + paymentMethod + ", Paid=" + paid + "]";
+        return "Factura [ID=" + id + ", ID de pedido=" + (order != null ? order.getId() : "null") +
+                ", Cantidad=" + amount + ", Fecha=" + date + ", Método de pago=" + paymentMethod + ",Pagado=" + paid + "]";
     }
 }
