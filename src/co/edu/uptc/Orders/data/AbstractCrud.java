@@ -6,10 +6,17 @@ import co.edu.uptc.orders.model.BaseClass;
 
 public abstract class AbstractCrud<T extends BaseClass> {
 
+<<<<<<< HEAD
     private String nameEntity;
 
     public AbstractCrud(String nameEntity) {
         this.nameEntity = nameEntity;
+=======
+    private String nameEntitiy; // Nombre Entidad
+
+    public AbstractCrud(String nameEntitiy) {
+        this.nameEntitiy = nameEntitiy; //nameEntity parametro que llega ; this.nameEntity es la variable local 
+>>>>>>> 7acf41c0577ef5981e8b9ebc7508a76d2c4e444e
     }
 
     public void menu() {
@@ -17,11 +24,20 @@ public abstract class AbstractCrud<T extends BaseClass> {
         boolean flag = true;
 
         while (flag) {
+<<<<<<< HEAD
 
             // opciones comboBox
             String[] menuOptions = { "1. Crear: " + this.nameEntity, "2. Buscar: " + this.nameEntity,
                     "3. Actualizar" + this.nameEntity, "4. Eliminar" + this.nameEntity, "5. Salir." };
             JComboBox<String> optionComboBox = new JComboBox<>(menuOptions);
+=======
+            
+            //opciones comboBox
+            String [] menuOptions = {"1. Crear: " + this.nameEntitiy, "2. Buscar: " + this.nameEntitiy,
+             "3. Actualizar" + this.nameEntitiy, "4. Eliminar" + this.nameEntitiy};
+            
+			JComboBox<String> optionComboBox = new JComboBox<>(menuOptions);
+>>>>>>> 7acf41c0577ef5981e8b9ebc7508a76d2c4e444e
 
             int option = JOptionPane.showConfirmDialog(
                     null,
