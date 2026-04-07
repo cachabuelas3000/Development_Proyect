@@ -6,17 +6,15 @@ import co.edu.uptc.orders.model.BaseClass;
 
 public abstract class AbstractCrud<T extends BaseClass> {
 
-<<<<<<< HEAD
     private String nameEntity;
 
     public AbstractCrud(String nameEntity) {
         this.nameEntity = nameEntity;
-=======
-    private String nameEntitiy; // Nombre Entidad
+		
+    private String nameEntity; // Nombre Entidad
 
-    public AbstractCrud(String nameEntitiy) {
-        this.nameEntitiy = nameEntitiy; //nameEntity parametro que llega ; this.nameEntity es la variable local 
->>>>>>> 7acf41c0577ef5981e8b9ebc7508a76d2c4e444e
+    public AbstractCrud(String nameEntity) {
+        this.nameEntity = nameEntity; //nameEntity parametro que llega ; this.nameEntity es la variable local 
     }
 
     public void menu() {
