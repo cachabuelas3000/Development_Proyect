@@ -1,22 +1,46 @@
 package co.edu.uptc.orders.run;
 
-import co.edu.uptc.orders.model.Order;
-import java.util.Date;
+import javax.swing.JOptionPane;
+
+import co.edu.uptc.orders.data.CrudOrderByApp;
+import co.edu.uptc.orders.data.CrudOrderBySocialWeb;
+import co.edu.uptc.orders.data.CrudDelivery;
+import co.edu.uptc.orders.data.CrudInvoice;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+        CrudOrderByApp orderByAppRepository = new CrudOrderByApp();
+        CrudOrderBySocialWeb orderBySocialWebRepository = new CrudOrderBySocialWeb();
+        CrudDelivery deliveryRepository = new CrudDelivery();
+        CrudInvoice invoiceRepository = new CrudInvoice();
 
-        // Crear un objeto Order para prueba
-        Order order = new Order(0, "ORD-001", "Juan García", new Date(), 150.50, "Express", "Tarjeta de Crédito");
-        
-        // Mostrar los datos del pedido
-        System.out.println("=== Prueba de Objeto Order ===");
-        System.out.println("ID: " + order.getId());
-        System.out.println("Número de Pedido: " + order.getNumberOfOrder());
-        System.out.println("Cliente: " + order.getCustomerName());
-        System.out.println("Fecha: " + order.getDate());
-        System.out.println("Costo Total: $" + order.getTotalCost());
-        System.out.println("Método de Entrega: " + order.getMethodOfDelivery());
-        System.out.println("Método de Pago: " + order.getPaymentMethod());
+        boolean flag = true;
+        while(flag) {
+
+            int numberCrud = Integer.parseInt(JOptionPane.showInputDialog(
+                    null,
+                    "[1] Pedidos por Aplicación\n[2] Pedidos por Redes Sociales\n[3] Entregas\n[4] Facturas\n[5] Salir",
+                    "MENÚ PRINCIPAL",
+                    JOptionPane.INFORMATION_MESSAGE
+                ));
+
+            switch(numberCrud) {
+                case 1:
+                    orderByAppRepository.menu();
+                    break;
+                case 2:
+                    orderBySocialWebRepository.menu();
+                    break;
+                case 3:
+                    deliveryRepository.menu();
+                    break;
+                case 4:
+                    invoiceRepository.menu();
+                    break;
+                case 5:
+                    flag = false;
+                    break;
+            }
+        }
     }
 }

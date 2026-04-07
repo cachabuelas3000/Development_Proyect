@@ -12,7 +12,7 @@ public class CrudInvoice extends AbstractCrud<Invoice> {
     private List<Invoice> invoices;
     private List<Order> orders; // Era necesario vincular las facturas con los pedidos.
 
-    public CrudInvoice(List<Order> orders) {
+    public CrudInvoice() {
         super("Invoice");
         this.invoices = new ArrayList<>();
         this.orders = orders;
