@@ -7,10 +7,6 @@ public class OrderBySocialWeb extends Order {
     private String socialWebName;
     private static int numOrder;
 
-    public OrderBySocialWeb(){
-        super();
-    }
-
     public OrderBySocialWeb(int id, String numberOfOrder, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod, String socialWebName) {
         super(id, numberOfOrder, customerName, date, totalCost, methodOfDelivery, paymentMethod);

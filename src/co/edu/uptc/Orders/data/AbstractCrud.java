@@ -6,15 +6,10 @@ import co.edu.uptc.orders.model.BaseClass;
 
 public abstract class AbstractCrud<T extends BaseClass> {
 
-    private String nameEntity;
-
-    public AbstractCrud(String nameEntity) {
-        this.nameEntity = nameEntity;
-		
     private String nameEntity; // Nombre Entidad
 
     public AbstractCrud(String nameEntity) {
-        this.nameEntity = nameEntity; //nameEntity parametro que llega ; this.nameEntity es la variable local 
+        this.nameEntity = nameEntity; // nameEntity parametro que llega ; this.nameEntity es la variable local
     }
 
     public void menu() {
@@ -22,20 +17,11 @@ public abstract class AbstractCrud<T extends BaseClass> {
         boolean flag = true;
 
         while (flag) {
-<<<<<<< HEAD
 
             // opciones comboBox
             String[] menuOptions = { "1. Crear: " + this.nameEntity, "2. Buscar: " + this.nameEntity,
-                    "3. Actualizar" + this.nameEntity, "4. Eliminar" + this.nameEntity, "5. Salir." };
+                    "3. Actualizar: " + this.nameEntity, "4. Eliminar: " + this.nameEntity, "5. Salir." };
             JComboBox<String> optionComboBox = new JComboBox<>(menuOptions);
-=======
-            
-            //opciones comboBox
-            String [] menuOptions = {"1. Crear: " + this.nameEntitiy, "2. Buscar: " + this.nameEntitiy,
-             "3. Actualizar" + this.nameEntitiy, "4. Eliminar" + this.nameEntitiy};
-            
-			JComboBox<String> optionComboBox = new JComboBox<>(menuOptions);
->>>>>>> 7acf41c0577ef5981e8b9ebc7508a76d2c4e444e
 
             int option = JOptionPane.showConfirmDialog(
                     null,
@@ -92,8 +78,8 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     // Caso actualizar
                     int idupdate = Integer.parseInt(JOptionPane.showInputDialog(
                             null,
-                            "Digite el identificafor a buscar: ",
-                            String.format("Actualización de: %s" + this.nameEntity),
+                            "Digite el identificador a buscar: ",
+                            String.format("Actualización de: %s", this.nameEntity),
                             JOptionPane.INFORMATION_MESSAGE));
                     T recordUpDate = this.findRecordById(idupdate);
                     if (recordUpDate != null) {
@@ -101,19 +87,19 @@ public abstract class AbstractCrud<T extends BaseClass> {
                         newRecord.setId(idupdate);
                         if (this.updateRecord(newRecord)) {
                             JOptionPane.showMessageDialog(null,
-                                    "Busqueda actualizada",
+                                    "Búsqueda actualizada",
                                     String.format("Actualización de %s", this.nameEntity),
                                     JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(null,
-                                    "No se actualizó su busqueda",
+                                    "No se actualizó su búsqueda",
                                     String.format("Actualización de %s", this.nameEntity),
                                     JOptionPane.INFORMATION_MESSAGE);
 
                         }
                     } else {
                         JOptionPane.showMessageDialog(null,
-                                "Su busqueda no existe",
+                                "Su búsqueda no existe",
                                 String.format("Actualización de %s", this.nameEntity),
                                 JOptionPane.ERROR_MESSAGE);
                     }
@@ -128,7 +114,7 @@ public abstract class AbstractCrud<T extends BaseClass> {
                             JOptionPane.INFORMATION_MESSAGE));
                     if (this.deleteRecord(idDelete)) {
                         JOptionPane.showMessageDialog(null,
-                                "Eliminación realizada con exito.",
+                                "Eliminación realizada con éxito.",
                                 String.format("Eliminación de %s", this.nameEntity), JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(null,
@@ -139,6 +125,16 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     break;
                 case "5":
                     flag = false;
+                    JOptionPane.showMessageDialog(null,
+                            "Saliendo del menú de " + this.nameEntity,
+                            String.format("Salida de %s", this.nameEntity),
+                            JOptionPane.INFORMATION_MESSAGE);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null,
+                            "Opción " + caseNumber + " no válida, por favor seleccione una opción del menú.",
+                            "Error de selección",
+                            JOptionPane.ERROR_MESSAGE);
                     break;
             }
 

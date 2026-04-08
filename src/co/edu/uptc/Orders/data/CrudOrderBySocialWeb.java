@@ -86,7 +86,7 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
                 JOptionPane.INFORMATION_MESSAGE
         );
 
-        OrderBySocialWeb pedido = new OrderBySocialWeb();
+        OrderBySocialWeb pedido = new OrderBySocialWeb(0, null, cliente, null, total, null, null, redSocial);
         pedido.setId(contador++); // ID automático
         pedido.setCustomerName(cliente);
         pedido.setNumberOfOrder(String.valueOf(pedido.getId())); // ID como número de pedido

@@ -2,6 +2,7 @@ package co.edu.uptc.orders.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 import co.edu.uptc.orders.model.OrderByApp;
@@ -47,7 +48,7 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
                 JOptionPane.INFORMATION_MESSAGE
         );
 
-        OrderByApp o = new OrderByApp();
+        OrderByApp o = new OrderByApp(0, orderNumber, customer, new Date(), total, null, null, appName);
         o.setId(counter++); // asigna ID automático
         o.setCustomerName(customer);
         o.setNumberOfOrder(orderNumber);

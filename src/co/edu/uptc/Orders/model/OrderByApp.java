@@ -7,10 +7,6 @@ public class OrderByApp extends Order {
     private String appName;
     private static int numberOrder;
 
-    public OrderByApp() {
-		super();
-	}
-
     public OrderByApp(int id, String numberOfOrder, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod, String appName) {
         super(id, numberOfOrder, customerName, date, totalCost, methodOfDelivery, paymentMethod);

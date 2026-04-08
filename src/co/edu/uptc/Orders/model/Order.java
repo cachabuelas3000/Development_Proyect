@@ -11,9 +11,7 @@ public class Order extends BaseClass {
     protected String methodOfDelivery;
     protected String paymentMethod;
 
-    public Order(){
-        
-    }
+   
 
     public Order(int id, String numberOfOrder, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod) {
