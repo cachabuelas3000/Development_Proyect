@@ -12,7 +12,7 @@ public class App {
         CrudOrderByApp orderByAppRepository = new CrudOrderByApp();
         CrudOrderBySocialWeb orderBySocialWebRepository = new CrudOrderBySocialWeb();
         CrudDelivery deliveryRepository = new CrudDelivery();
-        CrudInvoice invoiceRepository = new CrudInvoice();
+        CrudInvoice invoiceRepository = new CrudInvoice(orderByAppRepository.getOrderList());
 
         boolean flag = true;
         while (flag) {

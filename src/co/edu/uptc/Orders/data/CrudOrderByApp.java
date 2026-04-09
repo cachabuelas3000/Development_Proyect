@@ -13,7 +13,7 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
     private int counter = 1; // para asignar ID automático
 
     public CrudOrderByApp() {
-        super("Pedido");
+        super("Pedido por App");
         this.orderList = new ArrayList<>();
     }
 
@@ -24,34 +24,29 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
                 null,
                 "Ingrese el nombre del cliente:",
                 "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-
-        String orderNumber = JOptionPane.showInputDialog(
-                null,
-                "Ingrese el número del pedido:",
-                "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+                JOptionPane.INFORMATION_MESSAGE);
 
         double total = Double.parseDouble(JOptionPane.showInputDialog(
                 null,
-                "Ingrese el total del pedido:",
+                "Ingrese el monto total del pedido:",
                 "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        ));
+                JOptionPane.INFORMATION_MESSAGE));
 
         String appName = JOptionPane.showInputDialog(
-                null,
-                "Ingrese el nombre de la aplicación:",
-                "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+                null, "Ingrese el nombre de la aplicación:",
+                "Crear Pedido", JOptionPane.INFORMATION_MESSAGE);
 
-        OrderByApp o = new OrderByApp(0, orderNumber, customer, new Date(), total, null, null, appName);
+        String metodoPago = JOptionPane.showInputDialog(
+                null, "Ingrese el método de pago (efectivo, tarjeta, etc.):",
+                "Crear Pedido", JOptionPane.INFORMATION_MESSAGE);
+
+        String tipoEntrega = JOptionPane.showInputDialog(
+                null, "Ingrese el tipo de entrega (domicilio / local):",
+                "Crear Pedido", JOptionPane.INFORMATION_MESSAGE);
+
+        OrderByApp o = new OrderByApp(0, customer, new Date(), total, tipoEntrega, metodoPago, appName);
         o.setId(counter++); // asigna ID automático
         o.setCustomerName(customer);
-        o.setNumberOfOrder(orderNumber);
         o.setTotalCost(total);
         o.setAppName(appName);
 
@@ -69,6 +64,11 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
 
     @Override
     public OrderByApp findRecordById(int id) {
+        JOptionPane.showMessageDialog(null,
+                "Hay " + this.orderList.size() + " pedido(s) registrado(s) en total.",
+                "Información",
+                JOptionPane.INFORMATION_MESSAGE);
+
         return this.orderList.stream()
                 .filter(o -> o.getId() == id)
                 .findAny()
@@ -105,5 +105,9 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
     @Override
     public boolean deleteRecord(int id) {
         return this.orderList.removeIf(o -> o.getId() == id);
+    }
+
+    public List<OrderByApp> getOrderList() {
+        return this.orderList;
     }
 }

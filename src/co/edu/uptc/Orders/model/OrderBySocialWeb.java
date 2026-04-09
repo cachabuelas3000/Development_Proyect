@@ -9,7 +9,7 @@ public class OrderBySocialWeb extends Order {
 
     public OrderBySocialWeb(int id, String numberOfOrder, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod, String socialWebName) {
-        super(id, numberOfOrder, customerName, date, totalCost, methodOfDelivery, paymentMethod);
+        super(id, customerName, date, totalCost, methodOfDelivery, paymentMethod);
         this.socialWebName = socialWebName;
         ++Order.generalId;
         this.id = new Integer(Order.generalId);

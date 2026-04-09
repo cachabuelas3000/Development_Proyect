@@ -30,6 +30,12 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     JOptionPane.OK_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
 
+            //
+            if (option != JOptionPane.OK_OPTION) {
+                flag = false;
+                break;
+            }
+
             // capturo la elección del usuario
             String selection = (String) optionComboBox.getSelectedItem();
 

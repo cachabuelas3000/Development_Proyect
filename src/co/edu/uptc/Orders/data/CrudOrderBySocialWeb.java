@@ -12,7 +12,7 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
     private int contador = 1;
 
     public CrudOrderBySocialWeb() {
-        super("Pedido por Redes/Web");
+        super("Pedido por Redes sociales");
         this.listaPedidos = new ArrayList<>();
     }
 
@@ -27,6 +27,11 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
 
     @Override
     protected OrderBySocialWeb findRecordById(int id) {
+        JOptionPane.showMessageDialog(null,
+                "Hay " + this.listaPedidos.size() + " pedido(s) registrado(s) en total.",
+                "Información",
+                JOptionPane.INFORMATION_MESSAGE);
+
         for (OrderBySocialWeb p : listaPedidos) {
             if (p.getId() == id) {
                 return p;
@@ -69,24 +74,33 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
                 null,
                 "Ingrese el nombre del cliente:",
                 "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+                JOptionPane.INFORMATION_MESSAGE);
 
         double total = Double.parseDouble(JOptionPane.showInputDialog(
                 null,
                 "Ingrese el total del pedido:",
                 "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        ));
+                JOptionPane.INFORMATION_MESSAGE));
 
         String redSocial = JOptionPane.showInputDialog(
                 null,
                 "Ingrese el nombre de la red social:",
                 "Crear Pedido",
-                JOptionPane.INFORMATION_MESSAGE
-        );
+                JOptionPane.INFORMATION_MESSAGE);
 
-        OrderBySocialWeb pedido = new OrderBySocialWeb(0, null, cliente, null, total, null, null, redSocial);
+        String metodoPago = JOptionPane.showInputDialog(
+                null,
+                "Ingrese el método de pago (efectivo, tarjeta, etc.):",
+                "Crear Pedido",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        String tipoEntrega = JOptionPane.showInputDialog(
+                null,
+                "Ingrese el tipo de entrega (domicilio / local):",
+                "Crear Pedido",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        OrderBySocialWeb pedido = new OrderBySocialWeb(0, null, cliente, null, total, tipoEntrega, metodoPago, redSocial);
         pedido.setId(contador++); // ID automático
         pedido.setCustomerName(cliente);
         pedido.setNumberOfOrder(String.valueOf(pedido.getId())); // ID como número de pedido

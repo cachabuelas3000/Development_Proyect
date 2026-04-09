@@ -9,9 +9,7 @@ public class Invoice extends BaseClass {
     private String paymentMethod;
     private boolean paid;
 
-    public Invoice() {
-        this.id = ++autoId;
-    }
+
 
     public Invoice(Order order, double amount, String date, String paymentMethod, boolean paid) {
         this.id = ++autoId;

@@ -2,6 +2,7 @@ package co.edu.uptc.orders.model;
 
 public class BaseClass {
 
+    
     protected int id;
 
     public BaseClass() {

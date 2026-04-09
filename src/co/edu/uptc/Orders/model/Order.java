@@ -4,19 +4,17 @@ import java.util.Date;
 
 public class Order extends BaseClass {
 
-    
     protected String numberOfOrder;
     protected String customerName;
     protected Date date;
     protected double totalCost;
     protected String methodOfDelivery;
     protected String paymentMethod;
-    protected static int generalId = 0; 
+    protected static int generalId = 0;
 
-    public Order(int id, String numberOfOrder, String customerName, Date date, double totalCost,
+    public Order(int id, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod) {
         super(id);
-        this.numberOfOrder = numberOfOrder;
         this.customerName = customerName;
         this.date = date;
         this.totalCost = totalCost;
@@ -74,16 +72,19 @@ public class Order extends BaseClass {
 
     @Override
     public String toString() {
-        return """
-----Pedido [número de pedido=" + numberOfOrder + ", nombre del cliente=" + customerName + ", fecha=" + date
-                + ", costo total=" + totalCost + ", método de entrega=" + methodOfDelivery + ", método de pago="
-                + paymentMethod + "]
-                """;
-        
-        /*"----Orden [número de=" + numberOfOrder + ", customerName=" + customerName + ", date=" + date
-                + ", totalCost=" + totalCost + ", methodOfDelivery=" + methodOfDelivery + ", paymentMethod="
-                + paymentMethod + "]";*/
-    }
+        String tipoEntrega;
+        if (methodOfDelivery != null && methodOfDelivery.equalsIgnoreCase("domicilio")) {
+            tipoEntrega = "🛵 Domicilio (se enviará a su dirección)";
+        } else {
+            tipoEntrega = "🏠 Recoge en el local";
+        }
 
+        return "📦 Pedido #" + getId() +
+                "\n👤 Cliente: " + customerName +
+                "\n📅 Fecha: " + date +
+                "\n💰 Total: $" + totalCost +
+                "\n🚚 Tipo de entrega: " + tipoEntrega +
+                "\n💳 Método de pago: " + paymentMethod;
+    }
 
 }

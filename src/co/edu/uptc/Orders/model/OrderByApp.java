@@ -7,12 +7,11 @@ public class OrderByApp extends Order {
     private String appName;
     private static int numberOrder;
 
-    public OrderByApp(int id, String numberOfOrder, String customerName, Date date, double totalCost,
+    public OrderByApp(int id, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod, String appName) {
-        super(id, numberOfOrder, customerName, date, totalCost, methodOfDelivery, paymentMethod);
-        this.appName = appName;
-        ++Order.generalId;
-        this.id = new Integer(Order.generalId);
+        super(++Order.generalId, customerName, date, totalCost, methodOfDelivery, paymentMethod);
+        this.appName = appName; 
+        this.id = Order.generalId;
     }
 
     public String getAppName() {
@@ -22,10 +21,5 @@ public class OrderByApp extends Order {
     public void setAppName(String appName) {
         this.appName = appName;
     }
-
-    
-    
-
-    
 
 }

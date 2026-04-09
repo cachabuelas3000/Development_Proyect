@@ -6,17 +6,18 @@ import java.util.List;
 
 import co.edu.uptc.orders.model.Invoice;
 import co.edu.uptc.orders.model.Order;
+import co.edu.uptc.orders.model.OrderByApp;
 
 public class CrudInvoice extends AbstractCrud<Invoice> {
 
     private List<Invoice> invoices;
-    private List<Order> orders; // Era necesario vincular las facturas con los pedidos.
+    private List<OrderByApp> orders; // Era necesario vincular las facturas con los pedidos.
 
-    public CrudInvoice() {
-        super("Factura");
-        this.invoices = new ArrayList<>();
-        this.orders = orders;
-    }
+public CrudInvoice(List<OrderByApp> orders) {
+    super("Factura");
+    this.invoices = new ArrayList<>();
+    this.orders = orders;
+}
 
     @Override
     protected Invoice createInstance() {
@@ -26,7 +27,7 @@ public class CrudInvoice extends AbstractCrud<Invoice> {
         }
 
         int orderId = Integer.parseInt(JOptionPane.showInputDialog("Introduzca el ID del pedido: "));
-        Order order = orders.stream().filter(o -> o.getId() == orderId).findAny().orElse(null);
+        OrderByApp order = orders.stream().filter(o -> o.getId() == orderId).findAny().orElse(null);
 
         if (order == null) {
             JOptionPane.showMessageDialog(null, "Pedido no encontrado. ");
