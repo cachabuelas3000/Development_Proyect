@@ -11,7 +11,8 @@ public class OrderBySocialWeb extends Order {
             String methodOfDelivery, String paymentMethod, String socialWebName) {
         super(id, numberOfOrder, customerName, date, totalCost, methodOfDelivery, paymentMethod);
         this.socialWebName = socialWebName;
-        this.id = ++numOrder;
+        ++Order.generalId;
+        this.id = new Integer(Order.generalId);
     }
 
     public String getSocialWebName() {

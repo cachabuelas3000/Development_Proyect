@@ -4,14 +4,14 @@ import java.util.Date;
 
 public class Order extends BaseClass {
 
+    
     protected String numberOfOrder;
     protected String customerName;
     protected Date date;
     protected double totalCost;
     protected String methodOfDelivery;
     protected String paymentMethod;
-
-   
+    protected static int generalId = 0; 
 
     public Order(int id, String numberOfOrder, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod) {
@@ -72,7 +72,18 @@ public class Order extends BaseClass {
         this.paymentMethod = paymentMethod;
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return """
+----Pedido [número de pedido=" + numberOfOrder + ", nombre del cliente=" + customerName + ", fecha=" + date
+                + ", costo total=" + totalCost + ", método de entrega=" + methodOfDelivery + ", método de pago="
+                + paymentMethod + "]
+                """;
+        
+        /*"----Orden [número de=" + numberOfOrder + ", customerName=" + customerName + ", date=" + date
+                + ", totalCost=" + totalCost + ", methodOfDelivery=" + methodOfDelivery + ", paymentMethod="
+                + paymentMethod + "]";*/
+    }
+
 
 }

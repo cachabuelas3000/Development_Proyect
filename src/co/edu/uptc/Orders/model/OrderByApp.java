@@ -11,7 +11,8 @@ public class OrderByApp extends Order {
             String methodOfDelivery, String paymentMethod, String appName) {
         super(id, numberOfOrder, customerName, date, totalCost, methodOfDelivery, paymentMethod);
         this.appName = appName;
-        this.id = ++numberOrder;
+        ++Order.generalId;
+        this.id = new Integer(Order.generalId);
     }
 
     public String getAppName() {
