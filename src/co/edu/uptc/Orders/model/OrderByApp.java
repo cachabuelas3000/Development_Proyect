@@ -5,7 +5,6 @@ import java.util.Date;
 public class OrderByApp extends Order {
 
     private String appName;
-    private static int numberOrder;
 
     public OrderByApp(int id, String customerName, Date date, double totalCost,
             String methodOfDelivery, String paymentMethod, String appName) {

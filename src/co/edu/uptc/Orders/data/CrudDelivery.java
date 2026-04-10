@@ -44,11 +44,15 @@ public class CrudDelivery extends AbstractCrud<Delivery> {
     protected boolean updateRecord(Delivery d) {
         for (Delivery delivery : deliveries) {
             if (delivery.getId() == d.getId()) {
-                if (d.getCourier() != null) delivery.setCourier(d.getCourier());
-                if (d.getVehicle() != null) delivery.setVehicle(d.getVehicle());
-                if (d.getArea() != null) delivery.setArea(d.getArea());
+                if (d.getCourier() != null)
+                    delivery.setCourier(d.getCourier());
+                if (d.getVehicle() != null)
+                    delivery.setVehicle(d.getVehicle());
+                if (d.getArea() != null)
+                    delivery.setArea(d.getArea());
                 delivery.setFee(d.getFee());
-                if (d.getStatus() != null) delivery.setStatus(d.getStatus());
+                if (d.getStatus() != null)
+                    delivery.setStatus(d.getStatus());
                 return true;
             }
         }
@@ -58,5 +62,10 @@ public class CrudDelivery extends AbstractCrud<Delivery> {
     @Override
     protected boolean deleteRecord(int id) {
         return deliveries.removeIf(d -> d.getId() == id);
+    }
+
+    @Override
+    protected int getQuantity() {
+        return this.deliveries.size();
     }
 }

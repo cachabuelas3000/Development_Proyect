@@ -3,6 +3,7 @@ package co.edu.uptc.orders.data;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.Date;
 
 import co.edu.uptc.orders.model.OrderBySocialWeb;
 
@@ -27,10 +28,6 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
 
     @Override
     protected OrderBySocialWeb findRecordById(int id) {
-        JOptionPane.showMessageDialog(null,
-                "Hay " + this.listaPedidos.size() + " pedido(s) registrado(s) en total.",
-                "Información",
-                JOptionPane.INFORMATION_MESSAGE);
 
         for (OrderBySocialWeb p : listaPedidos) {
             if (p.getId() == id) {
@@ -100,7 +97,8 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
                 "Crear Pedido",
                 JOptionPane.INFORMATION_MESSAGE);
 
-        OrderBySocialWeb pedido = new OrderBySocialWeb(0, null, cliente, null, total, tipoEntrega, metodoPago, redSocial);
+        OrderBySocialWeb pedido = new OrderBySocialWeb(0, null, cliente, new Date(), total, tipoEntrega, metodoPago,
+                redSocial);
         pedido.setId(contador++); // ID automático
         pedido.setCustomerName(cliente);
         pedido.setNumberOfOrder(String.valueOf(pedido.getId())); // ID como número de pedido
@@ -113,5 +111,10 @@ public class CrudOrderBySocialWeb extends AbstractCrud<OrderBySocialWeb> {
     @Override
     protected boolean deleteRecord(int id) {
         return this.listaPedidos.removeIf(p -> p.getId() == id);
+    }
+
+    @Override
+    protected int getQuantity() {
+        return this.listaPedidos.size();
     }
 }

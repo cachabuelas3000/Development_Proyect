@@ -64,10 +64,6 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
 
     @Override
     public OrderByApp findRecordById(int id) {
-        JOptionPane.showMessageDialog(null,
-                "Hay " + this.orderList.size() + " pedido(s) registrado(s) en total.",
-                "Información",
-                JOptionPane.INFORMATION_MESSAGE);
 
         return this.orderList.stream()
                 .filter(o -> o.getId() == id)
@@ -109,5 +105,10 @@ public class CrudOrderByApp extends AbstractCrud<OrderByApp> {
 
     public List<OrderByApp> getOrderList() {
         return this.orderList;
+    }
+
+    @Override
+    protected int getQuantity() {
+        return this.orderList.size();
     }
 }

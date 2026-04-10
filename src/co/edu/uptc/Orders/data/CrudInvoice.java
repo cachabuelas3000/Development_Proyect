@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.uptc.orders.model.Invoice;
-import co.edu.uptc.orders.model.Order;
 import co.edu.uptc.orders.model.OrderByApp;
 
 public class CrudInvoice extends AbstractCrud<Invoice> {
@@ -13,11 +12,11 @@ public class CrudInvoice extends AbstractCrud<Invoice> {
     private List<Invoice> invoices;
     private List<OrderByApp> orders; // Era necesario vincular las facturas con los pedidos.
 
-public CrudInvoice(List<OrderByApp> orders) {
-    super("Factura");
-    this.invoices = new ArrayList<>();
-    this.orders = orders;
-}
+    public CrudInvoice(List<OrderByApp> orders) {
+        super("Factura");
+        this.invoices = new ArrayList<>();
+        this.orders = orders;
+    }
 
     @Override
     protected Invoice createInstance() {
@@ -37,14 +36,16 @@ public CrudInvoice(List<OrderByApp> orders) {
         double amount = Double.parseDouble(JOptionPane.showInputDialog("Introduzca la cantidad: "));
         String date = JOptionPane.showInputDialog("Introduzca la fecha: ");
         String paymentMethod = JOptionPane.showInputDialog("Introduzca el método de pago: ");
-        boolean paid = JOptionPane.showConfirmDialog(null, "Paid?", "Payment", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        boolean paid = JOptionPane.showConfirmDialog(null, "Paid?", "Payment",
+                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 
         return new Invoice(order, amount, date, paymentMethod, paid);
     }
 
     @Override
     protected boolean newRecord(Invoice record) {
-        if (record == null) return false;
+        if (record == null)
+            return false;
         if (this.findRecordById(record.getId()) == null) {
             invoices.add(record);
             return true;
@@ -61,10 +62,13 @@ public CrudInvoice(List<OrderByApp> orders) {
     protected boolean updateRecord(Invoice i) {
         for (Invoice inv : invoices) {
             if (inv.getId() == i.getId()) {
-                if (i.getOrder() != null) inv.setOrder(i.getOrder());
+                if (i.getOrder() != null)
+                    inv.setOrder(i.getOrder());
                 inv.setAmount(i.getAmount());
-                if (i.getDate() != null) inv.setDate(i.getDate());
-                if (i.getPaymentMethod() != null) inv.setPaymentMethod(i.getPaymentMethod());
+                if (i.getDate() != null)
+                    inv.setDate(i.getDate());
+                if (i.getPaymentMethod() != null)
+                    inv.setPaymentMethod(i.getPaymentMethod());
                 inv.setPaid(i.isPaid());
                 return true;
             }
@@ -75,5 +79,10 @@ public CrudInvoice(List<OrderByApp> orders) {
     @Override
     protected boolean deleteRecord(int id) {
         return invoices.removeIf(i -> i.getId() == id);
+    }
+
+    @Override
+    protected int getQuantity() {
+        return this.invoices.size();
     }
 }

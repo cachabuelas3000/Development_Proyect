@@ -58,6 +58,11 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     break;
 
                 case "2":
+
+                    JOptionPane.showMessageDialog(null,
+                            "Hay " + this.getQuantity() + " registro(s) de " + this.nameEntity + " en total.",
+                            "Información", JOptionPane.INFORMATION_MESSAGE);
+
                     // caso buscar
                     int idfind = Integer.parseInt(JOptionPane.showInputDialog(
                             null,
@@ -81,6 +86,9 @@ public abstract class AbstractCrud<T extends BaseClass> {
                     }
                     break;
                 case "3":
+                    JOptionPane.showMessageDialog(null,
+                            "Hay " + this.getQuantity() + " registro(s) de " + this.nameEntity + " en total.",
+                            "Información", JOptionPane.INFORMATION_MESSAGE);
                     // Caso actualizar
                     int idupdate = Integer.parseInt(JOptionPane.showInputDialog(
                             null,
@@ -112,21 +120,41 @@ public abstract class AbstractCrud<T extends BaseClass> {
 
                     break;
                 case "4":
-                    // Caso eliminar
+                    // le muestra al usuario cuantos registros hay en total antes de eliminar
+                    JOptionPane.showMessageDialog(null,
+                            "Hay " + this.getQuantity() + " registro(s) de " + this.nameEntity + " en total.",
+                            "Información", JOptionPane.INFORMATION_MESSAGE);
+
+                    // realiza ahora si la eliminación del registro
                     int idDelete = Integer.parseInt(JOptionPane.showInputDialog(
                             null,
-                            "¿Qué desea eliminar? ",
+                            "Digite el ID del registro a eliminar: ",
                             String.format("Eliminación de %s", this.nameEntity),
                             JOptionPane.INFORMATION_MESSAGE));
-                    if (this.deleteRecord(idDelete)) {
-                        JOptionPane.showMessageDialog(null,
-                                "Eliminación realizada con éxito.",
-                                String.format("Eliminación de %s", this.nameEntity), JOptionPane.INFORMATION_MESSAGE);
+
+                    int confirmation = JOptionPane.showConfirmDialog(
+                            null,
+                            "¿Está seguro que desea eliminar el registro con ID " + idDelete + "?",
+                            String.format("Eliminación de %s", this.nameEntity),
+                            JOptionPane.YES_NO_OPTION);
+
+                    if (confirmation == JOptionPane.YES_OPTION) {
+                        if (this.deleteRecord(idDelete)) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Eliminación realizada con éxito.",
+                                    String.format("Eliminación de %s", this.nameEntity),
+                                    JOptionPane.INFORMATION_MESSAGE);
+                        } else {
+                            JOptionPane.showMessageDialog(null,
+                                    "No se encontró un registro con ese ID.",
+                                    String.format("Eliminación de %s", this.nameEntity),
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null,
-                                "No se hizo la eliminación, porque no existe registro.",
+                                "Eliminación cancelada.",
                                 String.format("Eliminación de %s", this.nameEntity),
-                                JOptionPane.ERROR_MESSAGE);
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
                     break;
                 case "5":
@@ -157,5 +185,7 @@ public abstract class AbstractCrud<T extends BaseClass> {
     protected abstract T createInstance();
 
     protected abstract boolean deleteRecord(int id);
+
+    protected abstract int getQuantity();
 
 }
